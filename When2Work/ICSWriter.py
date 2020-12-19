@@ -26,8 +26,7 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE"""
 
-def write_ics_middle(summary, month, day, start,end):
-        year = time.strftime("%Y")
+def write_ics_middle(summary, year,month, day, start,end):
         calendar_middle=f"""BEGIN:VEVENT
 DTSTART;TZID=America/New_York:{year}{month}{day}T{start}00
 DTEND;TZID=America/New_York:{year}{month}{day}T{end}00
