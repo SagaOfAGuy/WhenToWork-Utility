@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 
 class When2Work():
     def __init__(self):
-        # Change the 
-        load_dotenv('')
+        # .env file 
+        load_dotenv('creds.env')
         
         self.options = Options()
         self.options.add_argument("headless")
@@ -105,6 +105,7 @@ class When2Work():
                 shift_start = shift_cell_text[4] 
                 shift_end = shift_cell_text[6]
                 start_hour = convert_time(shift_start)
+                year = shift_cell_text[3]
                 end_hour = convert_time(shift_end)
                 start_fraction = fraction_time(shift_start)
                 end_fraction = fraction_time(shift_end)
@@ -112,7 +113,7 @@ class When2Work():
                 end_hour_number = f'{add_zero(end_hour)}{end_fraction[1:]}'
                 shift_day = shift_cell_text[2][0: shift_cell_text[2].index(',')]
                 month = str(month_to_num[shift_cell.text[4:7]])
-                ics_content = write_ics_middle("VCU",month,add_zero(shift_day),start_hour_number, end_hour_number)
+                ics_content = write_ics_middle("VCU",year, add_zero(month),add_zero(shift_day),start_hour_number, end_hour_number)
                 icsfile.write(ics_content)
             ics_ending = end_ics()
             icsfile.write(ics_ending)
